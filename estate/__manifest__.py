@@ -5,8 +5,11 @@
     'description': '',
     'depends': ['base', 'mail', 'web','product'],
     'data': [
-        'security/ir.model.access.csv',
+
         # 'data/property.tag.csv',
+        'security/estate_security.xml',
+        'security/ir.model.access.csv',
+        'data/sequence_data.xml',
         'wizard/delete_property_wizard_view.xml',
         'views/estate_property_view.xml',
         'views/property_type_view.xml',

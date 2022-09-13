@@ -18,7 +18,7 @@ class EstateProperty(models.Model):
         required=False)
     user_id = fields.Many2one(
         comodel_name='res.users',
-        default=lambda self:self.env.user,
+        # default=lambda self:self.env.user,
         string='user',
         required=False)
     company_id = fields.Many2one(
@@ -57,6 +57,11 @@ class EstateProperty(models.Model):
     description = fields.Text(
         string="Description",
         required=False)
+    ref = fields.Char(
+        string='Reference No:',
+        # default=lambda self: self.env['ir.sequence'].next_by_code('estate.property'),
+        copy=False
+    )
     postcode = fields.Char(
         string='Postcode',
         required=False)
@@ -150,6 +155,12 @@ class EstateProperty(models.Model):
         string='Image'
     )
 
+
+    @api.model
+    def create(self,vals):
+        vals['ref'] = self.env['ir.sequence'].next_by_code('estate.property')
+        return super(EstateProperty, self).create(vals)
+
     @api.depends('living_area','garden_area')
     def _compute_total_area(self):
         self.total_area = self.living_area+self.garden_area
@@ -195,7 +206,10 @@ class EstateProperty(models.Model):
         ('check_offer_price','CHECK(offer_ids.price>0)','offer price should be greater than zero'),
         ('check_tag_type','unique(property_tag_ids.name AND property_type_ids.name)','property tag and type should be unique')
     ]
-
+    def action_demo(self):
+        print('-------->',self.env.user.name)
+        print('---->----->',self.env.user.id)
+        print('-------->',self.user_id)
 
 
 

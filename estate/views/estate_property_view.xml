@@ -38,7 +38,8 @@
                             attrs="{'invisible':['|',('state','=','sold'),('state','=','cancel')]}"
                             help="by clicking sold you can sold this property"/>
                     <button name="action_cancel" type="object" string="Cancel"
-                            attrs="{'invisible':['|',('state','=','sold'),('state','=','cancel')]}"/>
+                            attrs="{'invisible':['|',('state','=','sold'),('state','=','cancel')]}"/>         help="by clicking sold you can sold this property"/>
+                    <button class="btn btn-danger" name="action_demo" type="object" string="Demo"/>
                     <field name="state" widget="statusbar" statusbar_visible="new,offer_accepted,sold,cancelled"
                            options="{'clickable':'1'}"
                            attrs="{'invisible':['|',('state','=','sold'),('state','=','cancelled')]}"/>
@@ -48,6 +49,9 @@
                 <sheet>
 
                     <div>
+                        <h2>
+                            <field name="ref" readonly="True"/>
+                        </h2>
                         <h1>
                             <field name="priority" widget="priority"/>
                             <field name="image" widget="image" class="oe_avatar"/>
@@ -105,7 +109,7 @@
                             <group>
                                 <field name="buyer"/>
                                 <field name="sales_person"/>
-                                <field name="user_id" invisible="1"/>
+                                <field name="user_id" />
                             </group>
                         </page>
                         <page name="offers" string="Offers">

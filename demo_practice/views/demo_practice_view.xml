@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="demo_practice_view" model="ir.actions.act_window">
+        <field name="name">demo practice</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">demo.practice</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+         <record id="demo_practice_view_tree" model="ir.ui.view">
+        <field name="name">demo_practice_view_tree</field>
+        <field name="model">demo.practice</field>
+        <field name="arch" type="xml">
+            <tree string="demo_practice_tree">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+
+        <record id="demo_practice_view_form" model="ir.ui.view">
+        <field name="name">demo_practice_view_form</field>
+        <field name="model">demo.practice</field>
+        <field name="arch" type="xml">
+            <form string="demo_practice_form">
+
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="user_id"/>
+
+
+
+                    </group>
+
+
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+
+
+    </data>
+</odoo>
+
