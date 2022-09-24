@@ -18,7 +18,8 @@
                 <field name="postcode" invisible="True"/>
                 <field name="bedrooms"/>
                 <field name="living_area"/>
-                <field name="expected_price" sum="expected sum"/>
+                <field name="state"/>
+                <field name="expected_price" sum="expected sum" decoration-success="state  == 'sold'"   widget="badge"/>
                 <field name="selling_price" sum="selling price"/>
                 <field name="currency_id"/>
                 <field name="available_from" optional="hide"/>
@@ -40,6 +41,7 @@
                     <button name="action_cancel" type="object" string="Cancel"
                             attrs="{'invisible':['|',('state','=','sold'),('state','=','cancel')]}"/>         help="by clicking sold you can sold this property"/>
                     <button class="btn btn-danger" name="action_demo" type="object" string="Demo"/>
+                    <button class="btn-danger" name="new_delete_action" type="object" string="Delete Property"/>
                     <field name="state" widget="statusbar" statusbar_visible="new,offer_accepted,sold,cancelled"
                            options="{'clickable':'1'}"
                            attrs="{'invisible':['|',('state','=','sold'),('state','=','cancelled')]}"/>
@@ -87,6 +89,7 @@
                             <field name="expected_price"/>
                             <field name="selling_price"/>
                             <field name="best_price"/>
+                            <field name="total_valuation"/>
 
                         </group>
                     </group>

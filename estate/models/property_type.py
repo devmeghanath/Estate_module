@@ -36,6 +36,9 @@ class PropertyType(models.Model):
         compute='_compute_offer_count',
         required=False)
 
+
+    reference = fields.Reference(selection = [('estate.property','Estate'),('sale.order','Sale')], string='Reference')
+
     def _compute_offer_count(self):
         offer_count = self.env['property.offer'].search_count([('property_type_id','=',self.id)])
         self.offer_count = offer_count
@@ -73,10 +76,11 @@ class PropertyType(models.Model):
                 for i in ids:
                     list.append(i.name)
                 print('--------------------->',rec.name,list)
+    def sold(self):
+        pass
 
 
-
-
+    # def creating_rec(self):
 
 
 

@@ -5,7 +5,8 @@
             <field name="name">delete_property</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">delete.property.wizard</field>
-            <field name="view_mode">form</field>
+            <field name="res_model">delete.property.wizard</field>
+            <field name="context">{'default_property_id':'self.id.id'}</field>
             <field name="target">new</field>
         </record>
 

@@ -25,6 +25,7 @@
                 <form string="property_type_form">
                     <header>
                         <button name="apply" type="object" string="Apply"/>
+                        <button name="sold" type="object" string="sold"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
@@ -43,6 +44,7 @@
                         </div>
                         <group>
                             <field name="hide_name"/>
+                            <field name="reference"/>
 
                         </group>
                         <group>

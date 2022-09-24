@@ -23,6 +23,10 @@
         <field name="model">demo.practice</field>
         <field name="arch" type="xml">
             <form string="demo_practice_form">
+                <header>
+                    <button class="btn-danger" name="%(estate.estate_property_view)d" type="action" string="open estate "/>
+                    <button class="btn-success" name="%(view_invoice_wizard_action)d" type="action" string="get invoices"/>
+                </header>
 
                 <sheet>
                     <group>
@@ -31,8 +35,15 @@
 
 
 
-                    </group>
 
+                    </group>
+                    <notebook>
+                        <page name="Description" string="Description">
+                            <group>
+                                <field name="new_ids"/>
+                            </group>
+                        </page>
+                    </notebook>
 
 
                 </sheet>

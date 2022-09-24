@@ -12,6 +12,12 @@
                         <div>
                             <span t-esc="doc.expected_price"></span>
                         </div>
+                        <div>
+                            <span t-field="doc.image" t-options='{"widget": "image", "style":"width: 150px;height: 150px"}'/>
+<!--                            <span t-field="line.image" t-options='{"widget": "image"}'/>-->
+<!--                            "style":"width: 150px;height: 150px"-->
+
+                        </div>
 
 
                     </t>

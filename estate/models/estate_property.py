@@ -153,7 +153,17 @@ class EstateProperty(models.Model):
         ('3', 'Very High')], string="Priority")
     image = fields.Image(
         string='Image'
-    )
+            )
+
+    total_valuation =fields.Monetary(
+        'Total Valuation',
+        compute='_compute_total_valuation',
+        readonly=True,
+        copy=False)
+
+
+
+
 
 
     @api.model
@@ -182,12 +192,12 @@ class EstateProperty(models.Model):
         else:
             self.garden_area=0
             self.garden_orientation=None
-    @api.ondelete(at_uninstall=False)
-    def _ondelete_trigger_state(self):
-        if self.state == 'new' or self.state == 'cancelled':
-            pass
-        else:
-            raise UserError('cannot delete this data')
+    # @api.ondelete(at_uninstall=False)
+    # def _ondelete_trigger_state(self):
+    #     if self.state == 'new' or self.state == 'cancelled':
+    #         pass
+    #     else:
+    #         raise UserError('cannot delete this data')
     def action_sold(self):
         if self.state != 'cancelled':
             self.state = 'sold'
@@ -207,13 +217,40 @@ class EstateProperty(models.Model):
         ('check_tag_type','unique(property_tag_ids.name AND property_type_ids.name)','property tag and type should be unique')
     ]
     def action_demo(self):
-        print('-------->',self.env.user.name)
-        print('---->----->',self.env.user.id)
-        print('-------->',self.user_id)
+        property_list = [{'name':'prop1','expected_price':50000},{'name':'prop2','expected_price':50000},{'name':'prop3','expected_price':50000}]
+        print('exicuted ---------------------->')
+
+        self.env['estate.property'].create(property_list)
+        # print('-------->',self.env.user.name)
+        # print('---->----->',self.env.user.id)
+        # print('-------->',self.user_id)
+
+    @api.depends('offer_ids.price')
+    def _compute_total_valuation(self):
+        for rec in self:
+            self.total_valuation = sum(rec.offer_ids.mapped('price'))
+
+    # @api.model
+    # def default_get(self, fields):
+    #    res = super(EstateProperty, self).default_get(fields)
+    #    print('fields',fields)
+    #    print('res',res)
+    #    res['bedrooms']=32
+    #    res['active'] = False
+    #    print(self._context)
+    #    return res
 
 
+    def new_delete_action(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name':'delete_property',
+            'res_model': 'delete.property.wizard',
+            'view_mode': 'form',
+            'context':{'default_property_id':self.id},
+            'target':'new'
 
-
+        }
 
 
 

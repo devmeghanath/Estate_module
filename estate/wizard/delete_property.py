@@ -11,14 +11,23 @@ class DeleteProperty(models.TransientModel):
         required=False)
 
 
+
+    # def default_get(self,fields):
+    #     res = super(DeleteProperty, self).default_get(fields)
+    #     print(self._context)
+    #     res['property_id'] = self._context.get('active_id')
+    #     return res
+
+
     def delete_property(self):
         self.property_id.unlink()
 
-        query = """ select id,name from estate_property """
-        self.env.cr.execute(query)
-        details = self.env.cr.dictfetchall()
-        print('--------->',details)
 
+        # query = """ select id,name from estate_property """
+        # self.env.cr.execute(query)
+        # details = self.env.cr.dictfetchall()
+        # print('--------->',details)
+        #
 
 
 

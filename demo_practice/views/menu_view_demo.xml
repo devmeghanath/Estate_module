@@ -15,6 +15,11 @@
                   parent="sample_menu"
                   action="demo_practice_view"
                   sequence="0"/>
+        <menuitem id="new_menu_model"
+                  name="new model"
+                  parent="sample_menu"
+                  action="new_field_action"
+                  sequence="1"/>
 
 
     </data>

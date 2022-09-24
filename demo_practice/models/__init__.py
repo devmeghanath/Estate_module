@@ -1,1 +1,1 @@
-from . import demo_practice
+from . import demo_practice,new_practice

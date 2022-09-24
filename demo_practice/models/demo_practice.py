@@ -14,4 +14,9 @@ class DemoPractice(models.Model):
         comodel_name='res.users',
         string='User',
         required=False)
+    new_ids= fields.One2many(
+        comodel_name='new.model',
+        inverse_name='demo_id',
+        string='new',
+        required=False)
 
